@@ -1,0 +1,43 @@
+ 
+
+<div class="p-6 min-w-screen">
+    <!-- Heading Section -->
+    <div class="mb-6">
+        <h1 class="text-3xl font-semibold text-red-700">Request History</h1>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table class="min-w-full table-auto">
+            <!-- Table Header -->
+            <thead>
+                <tr class="bg-red-100">
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Group</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Required Unit</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Full Fillment Status</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Full Filled date</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Acceptor Userid</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Acceptor Role</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Received</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Not Received</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody *ngFor="let request of userBloodRequest">
+                <tr class="hover:bg-red-50 transition" >
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.bloodgroup}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.requiredunit}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.fullfillmentstatus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.fullfilleddate}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.acceptoruserid}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{request.acceptorrole}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800" *ngIf="request.status != 'Received' && 'NotReceived'">
+                        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-900 transition"  (click)="ReceivedBlood(request.requestid,request.acceptorrole,request.bloodgroup,request.acceptoruserid,request.requiredunit)">Received</button></td>
+                    <td class="py-5 px-4 text-sm text-gray-800" *ngIf="request.status != 'Received' && 'NotReceived'">
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" (click)="notReceivedBlood(request.requestid)">Not Received</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

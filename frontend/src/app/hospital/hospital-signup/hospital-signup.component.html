@@ -1,0 +1,254 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+    <h2 class="text-2xl font-bold text-center text-red-700 mb-6">Blood Bank - Hospital Signup</h2>
+    <form class="space-y-6" (ngSubmit)="!hospitalForm" #hospitalForm="ngForm">
+
+      <!-- Users Details -->
+      <div class="border-b border-gray-300 pb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">Hospital Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-600 mb-1">Hospital Name</label>
+            <input type="text" name="hospitalname" [(ngModel)]="hospitalRequest.hospital.hospitalname"
+              placeholder="Enter the name" required minlength="3" maxlength="50" #hospitalname="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="hospitalname.invalid && hospitalname.touched" class="text-red-500 text-sm">
+              <div *ngIf="hospitalname.errors?.['required']">Hospital Name is required</div>
+              <div *ngIf="hospitalname.errors?.['minlength']">Hospital Name must be at least 3 characters</div>
+              <div *ngIf="hospitalname.errors?.['maxlength']">Hospital Name cannot exceed 50 characters</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Hospital Phone Number</label>
+            <input type="text" name="hospitalphonenumber" [(ngModel)]="hospitalRequest.hospital.hospitalphonenumber"
+              placeholder="Enter the phone number" required pattern="^[6-9]\d{9}$" minlength="10" maxlength="10"
+              #hospitalphonenumber="ngModel" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="hospitalphonenumber.invalid && hospitalphonenumber.touched" class="text-red-500 text-sm">
+              <div *ngIf="hospitalphonenumber.errors?.['required']">Phone Number is required</div>
+              <div *ngIf="hospitalphonenumber.errors?.['pattern']">Phone Number must start with a digit between 6 and 9
+                and be exactly 10 digits long and only numbers accepted</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Hospital Email Id</label>
+            <input type="email" name="hospitalemail" [(ngModel)]="hospitalRequest.hospital.hospitalemail"
+              placeholder="Enter the email id" required email #hospitalemail="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="hospitalemail.invalid && hospitalemail.touched" class="text-red-500 text-sm">
+              <div *ngIf="hospitalemail.errors?.['required']">Email is required</div>
+              <div *ngIf="hospitalemail.errors?.['email']">Invalid email address. Please make sure the email follows the
+                correct format (e.g., example&commat;domain.com).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Details -->
+      <div class="border-b border-gray-300 pb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">User Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-600 mb-1">Username</label>
+            <input type="text" name="username" [(ngModel)]="hospitalRequest.user.username"
+              placeholder="Enter the email id" required email #username="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="username.invalid && username.touched" class="text-red-500 text-sm">
+              <div *ngIf="username.errors?.['required']">Email is required</div>
+              <div *ngIf="username.errors?.['email']">Invalid email address. Please make sure the email follows the
+                correct format (e.g., example&commat;domain.com).</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Password</label>
+            <div class="relative">
+            <input type="password" name="password" [(ngModel)]="hospitalRequest.user.password"
+              placeholder="Enter the password" required #password="ngModel" minlength="8"
+              [type]="showPassword ? 'text' : 'password'"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <button type="button" (click)="showPassword = !showPassword"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-gray-600 hover:text-gray-900">
+
+              <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                <path
+                  d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
+                <path d="M3 3l18 18" />
+              </svg>
+              <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+              </svg>
+
+            </button>
+          </div>
+            <div *ngIf="password.invalid && password.touched" class="text-red-500 text-sm">
+              <div *ngIf="password.errors?.['required']">Password is required</div>
+              <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long</div>
+            </div>
+
+          </div>
+          <input type="hidden" name="role" value="user" />
+        </div>
+      </div>
+
+      <!-- Address Details -->
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">Address Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-600 mb-1">Area</label>
+            <input type="text" name="area" [(ngModel)]="hospitalRequest.address.area" placeholder="Enter the area"
+              required minlength="3" maxlength="50" pattern="^[a-zA-Z\s\-'\.,]+$" #area="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="area.invalid && area.touched" class="text-red-500 text-sm">
+              <div *ngIf="area.errors?.['required']">Area is required</div>
+              <div *ngIf="area.errors?.['minlength']">Area must be at least 3 characters</div>
+              <div *ngIf="area.errors?.['maxlength']">Area cannot exceed 50 characters</div>
+              <div *ngIf="area.errors?.['pattern']">Area can only contain letters, spaces, hyphens, apostrophes, commas,
+                and periods</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">City</label>
+            <input type="text" name="city" [(ngModel)]="hospitalRequest.address.city" placeholder="Enter the city"
+              required minlength="3" maxlength="50" pattern="^[a-zA-Z\s]+$" #city="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="city.invalid && city.touched" class="text-red-500 text-sm">
+              <div *ngIf="city.errors?.['required']">City is required</div>
+              <div *ngIf="city.errors?.['minlength']">City must be at least 3 characters</div>
+              <div *ngIf="city.errors?.['maxlength']">City cannot exceed 50 characters</div>
+              <div *ngIf="city.errors?.['pattern']">City name must only contain letters and spaces</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Country</label>
+            <input type="text" name="country" [(ngModel)]="hospitalRequest.address.country"
+              placeholder="Enter the country" required minlength="2" maxlength="50" pattern="^[a-zA-Z\s]+$"
+              #country="ngModel" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="country.invalid && country.touched" class="text-red-500 text-sm">
+              <div *ngIf="country.errors?.['required']">Country is required</div>
+              <div *ngIf="country.errors?.['minlength']">Country must be at least 2 characters</div>
+              <div *ngIf="country.errors?.['maxlength']">Country cannot exceed 50 characters</div>
+              <div *ngIf="country.errors?.['pattern']">Country can only contain letters and spaces</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Pincode</label>
+            <input type="text" name="pincode" [(ngModel)]="hospitalRequest.address.pincode"
+              placeholder="Enter the pincode" required pattern="^[1-9][0-9]{5}$" maxlength="6" minlength="6"
+              #pincode="ngModel" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="pincode.invalid && pincode.touched" class="text-red-500 text-sm">
+              <div *ngIf="pincode.errors?.['required']">Pincode is required</div>
+              <div *ngIf="pincode.errors?.['pattern']">Pincode must start with a number and be exactly 6 digits</div>
+              <div *ngIf="pincode.errors?.['minlength']">Pincode must be 6 digits</div>
+              <div *ngIf="pincode.errors?.['maxlength']">Pincode cannot exceed 6 digits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">Document Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-600 mb-1">Proff Of Address</label>
+            <input type="text" name="proffofaddress" [(ngModel)]="hospitalRequest.document.proffofaddress"
+              placeholder="Enter Hospital-issued Address proof number" required
+              pattern="^[A-Za-z]{3}-[0-9]{5}-[0-9]{4}$" #proffofaddress="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="proffofaddress.invalid && proffofaddress.touched" class="text-red-500 text-sm">
+              <div *ngIf="proffofaddress.errors?.['required']">Proof of Address is required</div>
+              <div *ngIf="proffofaddress.errors?.['pattern']">Format: HSP-12345-2023</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">GST Number</label>
+            <input type="text" name="gstnumber" [(ngModel)]="hospitalRequest.document.gstnumber"
+              placeholder="Enter the GST number" required
+              pattern="^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$" #gstnumber="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="gstnumber.invalid && gstnumber.touched" class="text-red-500 text-sm">
+              <div *ngIf="gstnumber.errors?.['required']">GST number is required</div>
+              <div *ngIf="gstnumber.errors?.['pattern']">GST format is invalid. Must be 15 alphanumeric characters
+                Ex(22AAAAA0000A1Z5)</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Tax Document Number</label>
+            <input type="text" name="taxdocument" [(ngModel)]="hospitalRequest.document.taxdocument"
+              placeholder="Enter the Tax number" required pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" #taxdocument="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="taxdocument.invalid && taxdocument.touched" class="text-red-500 text-sm">
+              <div *ngIf="taxdocument.errors?.['required']">Tax document is required</div>
+              <div *ngIf="taxdocument.errors?.['pattern']">Invalid format, expected PAN (ABCDE1234F)</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">IMC Document Number</label>
+            <input type="text" name="imcdocument" [(ngModel)]="hospitalRequest.document.imcdocument"
+              placeholder="Enter the Imc Document number" required pattern="^IMC\d{6}$" #imcdocument="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="imcdocument.invalid && imcdocument.touched" class="text-red-500 text-sm">
+              <div *ngIf="imcdocument.errors?.['required']">Medical document number is required</div>
+              <div *ngIf="imcdocument.errors?.['pattern']">Invalid document number format (e.g., IMC123456)</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-gray-600 mb-1">Accredidation Certificate Number</label>
+            <input type="text" name="accredidationcertificate"
+              [(ngModel)]="hospitalRequest.document.accredidationcertificate"
+              placeholder="Enter the Accredidation Certrificate Number" required pattern="^[A-Za-z0-9/-]{8,20}$"
+              #accredidationcertificate="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="accredidationcertificate.invalid && accredidationcertificate.touched"
+              class="text-red-500 text-sm">
+              <div *ngIf="accredidationcertificate.errors?.['required']">Accreditation certificate is required</div>
+              <div *ngIf="accredidationcertificate.errors?.['pattern']">Format: 8-20 characters, may include letters,
+                numbers, '/', or '-'</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Identification Document</label>
+            <input type="text" name="identificationdocument"
+              [(ngModel)]="hospitalRequest.document.identificationdocument" placeholder="Enter the Aadhar Card Number "
+              required pattern="^[2-9]{1}[0-9]{11}$" minlength="12" maxlength="12" #identificationdocument="ngModel"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            <div *ngIf="identificationdocument.invalid && identificationdocument.touched" class="text-red-500 text-sm">
+              <div *ngIf="identificationdocument.errors?.['required']">Identification document is required</div>
+              <div *ngIf="identificationdocument.errors?.['pattern']">Must be a valid 12-digit Aadhaar card number</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <label class="flex items-center space-x-3">
+          <input type="checkbox" name="terms" ngModel="terms" required #terms="ngModel"
+            class="h-5 w-5 border rounded focus:ring-2 focus:ring-red-500" />
+          <span class="text-gray-700">
+            I agree to the terms and conditions
+            <a href="/terms-and-conditions" target="_blank" class="text-blue-500 hover:underline">terms & conditions</a>
+          </span>
+        </label>
+        <div *ngIf="terms.invalid && terms.touched" class="text-red-500 text-sm">
+          You must accept the terms and conditions to submit the form.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-red-700 text-white py-2 px-6 rounded-lg hover:bg-red-800 transition duration-200"
+          [disabled]="!hospitalForm.valid" (click)="saveHospital()">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>

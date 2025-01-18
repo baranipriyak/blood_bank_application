@@ -1,0 +1,28 @@
+<div class="p-6 min-w-screen">
+    <!-- Heading Section -->
+    <div class="mb-6">
+        <h1 class="text-3xl font-semibold text-red-700">User Profile</h1>
+        <h6 class="text-lg text-gray-600">Welcome, {{bloodBankRequest.bloodbankcentername}}!</h6>
+    </div>
+
+    <!-- Content Section -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <!-- User Profile Details -->
+        <div class="flex items-center p-6 space-x-6">
+            <!-- User Avatar -->
+            <div class="">
+                <img src="https://picsum.photos/seed/picsum/500/500" alt="User Avatar" class="w-46 h-56 rounded-full border-4 border-red-700">
+            </div>
+
+            <!-- User Details -->
+            <div class="flex-1">
+                <h2 class="text-2xl font-bold text-gray-800">{{bloodBankRequest.bloodbankcentername}}</h2>
+                <p class="text-md text-gray-600">Email: {{bloodBankRequest.bloodbankemail}}</p>
+                <p class="text-md text-gray-600">Phone: +91-{{bloodBankRequest.bloodbankphonenumber}}</p>
+                <p class="text-md text-gray-600">Location: {{bloodBankRequest.address.area}}, {{bloodBankRequest.address.city}}</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

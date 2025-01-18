@@ -1,0 +1,246 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+      <h2 class="text-2xl font-bold text-center text-red-700 mb-6">Blood Bank - Add New User</h2>
+      <form class="space-y-6" (ngSubmit)="!usersForm && saveUsers()" #usersForm="ngForm">
+        
+        <!-- Users Details -->
+        <div class="border-b border-gray-300 pb-4">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Users Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 mb-1">Users Name</label>
+              <input type="text" name="usersname" 
+              [(ngModel)]="usersRequest.users.usersname" placeholder="Enter the name" required 
+              minlength="3" maxlength="50"
+              #usersname="ngModel" 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="usersname.invalid && usersname.touched" class="text-red-500 text-sm">
+                  <div *ngIf="usersname.errors?.['required']">Users Name is required</div>
+                  <div *ngIf="usersname.errors?.['minlength']">Users Name must be at least 3 characters</div>
+                  <div *ngIf="usersname.errors?.['maxlength']">Users Name cannot exceed 50 characters</div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Phone Number</label>
+              <input type="text" name="usersphonenumber" 
+              [(ngModel)]="usersRequest.users.usersphonenumber" placeholder="Enter phone number" required 
+              pattern="^[6-9]\d{9}$"
+              minlength="10" maxlength="10"
+              #usersphonenumber="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="usersphonenumber.invalid && usersphonenumber.touched" class="text-red-500 text-sm">
+                  <div *ngIf="usersphonenumber.errors?.['required']">Phone Number is required</div>
+                  <div *ngIf="usersphonenumber.errors?.['pattern']">Phone Number must start with a digit between 6 and 9 and be exactly 10 digits long and only numbers accepted</div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Email Id</label>
+              <input type="email" name="usersemail"
+              [(ngModel)]="usersRequest.users.usersemail" placeholder="Enter the email id" required 
+              email
+              #usersemail="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="usersemail.invalid && usersemail.touched" class="text-red-500 text-sm">
+                  <div *ngIf="usersemail.errors?.['required']">Email is required</div>
+                  <div *ngIf="usersemail.errors?.['email']">Invalid email address. Please make sure the email follows the correct format (e.g., example&commat;domain.com).</div>
+              </div>
+
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Gender</label>
+              <div class="flex items-center space-x-4">
+                <label><input type="radio" name="gender" value="Female" [(ngModel)]="usersRequest.users.gender" required /> Female</label>
+                <label><input type="radio" name="gender" value="Male" [(ngModel)]="usersRequest.users.gender" required /> Male</label>
+                <label><input type="radio" name="gender" value="Other" [(ngModel)]="usersRequest.users.gender" required /> Other</label>
+              </div>
+              <div *ngIf="!usersRequest.users.gender && usersRequest.users.gender !== undefined" class="text-red-500 text-sm">
+                Gender is required
+            </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Age</label>
+              <input type="number" name="age"
+              [(ngModel)]="usersRequest.users.age" required 
+              min="18" max="100"
+              #age="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="age.invalid && age.touched" class="text-red-500 text-sm">
+                  <div *ngIf="age.errors?.['required']">Age is required</div>
+                  <div *ngIf="age.errors?.['min']">Age must be at least 18</div>
+                  <div *ngIf="age.errors?.['max']">Age cannot exceed 100</div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Weight</label>
+              <input type="number" name="weight" 
+              [(ngModel)]="usersRequest.users.weight" required 
+              #weight="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="weight.invalid && weight.touched" class="text-red-500 text-sm">
+                  <div *ngIf="weight.errors?.['required']">Weight is required</div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="usersbloodgroup" class="block text-sm font-medium text-gray-700">Blood Group</label>
+              <select id="usersbloodgroup" name="priority"
+              [(ngModel)]="usersRequest.users.usersbloodgroup" required 
+              #usersbloodgroup="ngModel"
+              class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                <option  value="A+" >A+</option>
+                <option  value="A-" >A-</option>
+                <option  value="B+" >B+</option>
+                <option  value="B-" >B-</option>
+                <option  value="AB+" >AB+</option>
+                <option  value="AB-" >AB-</option>
+                <option  value="O+" >O+</option>
+                <option  value="O-" >O-</option>
+                <option  value="A1+" >A1+</option>
+                <option  value="A1-" >A1-</option>
+                <option  value="A2+" >A2+</option>
+                <option  value="A2-" >A2-</option>
+                <option  value="A1B+" >A1B+</option>
+                <option  value="A1B-" >A1B-</option>
+                <option  value="A2B+" >A2B+</option>
+                <option  value="A2B-" >A2B-</option>
+              </select>
+              <div *ngIf="usersbloodgroup.invalid && usersbloodgroup.touched" class="text-red-500 text-sm">
+                Blood group is required
+            </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Disease</label>
+              <input type="text" name="usersdisease" 
+              [(ngModel)]="usersRequest.users.usersdisease"
+              #usersdisease
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+          </div>
+        </div>
+  
+        <!-- User Details -->
+        <div class="border-b border-gray-300 pb-4">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">User Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 mb-1">Username</label>
+              <input type="email" name="username" 
+              [(ngModel)]="usersRequest.user.username" placeholder="Enter the email id" required 
+              email
+              #username="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="username.invalid && username.touched" class="text-red-500 text-sm">
+                  <div *ngIf="username.errors?.['required']">Email is required</div>
+                  <div *ngIf="username.errors?.['email']">Invalid email address. Please make sure the email follows the correct format (e.g., example&commat;domain.com).</div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Create Password</label>
+              <div class="relative">
+              <input type="password" name="password"
+              [(ngModel)]="usersRequest.user.password" placeholder="Enter the password" required 
+              #password="ngModel"
+              minlength="8"  
+              [type]="showPassword ? 'text' : 'password'"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <!-- <button type="button" (click)="showPassword = !showPassword" class="absolute right-2 top-1/2 transform -translate-y-1/2">
+                  <span *ngIf="showPassword">Hide</span>
+                  <span *ngIf="!showPassword">Show</span>
+                </button> -->
+                <button 
+        type="button" 
+        (click)="showPassword = !showPassword" 
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-gray-600 hover:text-gray-900">
+      
+        <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>
+        <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+        
+      </button>
+              </div>
+                <div *ngIf="password.invalid && password.touched" class="text-red-500 text-sm">
+                  <div *ngIf="password.errors?.['required']">Password is required</div>
+                  <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long</div>
+                </div>
+            </div>
+            <input type="hidden" name="role" value="user"  />
+          </div>
+        </div>
+  
+        <!-- Address Details -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Address Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 mb-1">Area</label>
+              <input type="text" name="area" 
+              [(ngModel)]="usersRequest.address.area" required 
+              minlength="3" 
+              maxlength="50"  
+              pattern="^[a-zA-Z\s\-'\.,]+$" 
+              #area="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="area.invalid && area.touched" class="text-red-500 text-sm">
+                  <div *ngIf="area.errors?.['required']">Area is required</div>
+                  <div *ngIf="area.errors?.['minlength']">Area must be at least 3 characters</div>
+                  <div *ngIf="area.errors?.['maxlength']">Area cannot exceed 50 characters</div>
+                  <div *ngIf="area.errors?.['pattern']">Area can only contain letters, spaces, hyphens, apostrophes, commas, and periods</div>
+                </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">City</label>
+              <input type="text" name="city" 
+             [(ngModel)]="usersRequest.address.city"  required 
+             minlength="3" 
+             maxlength="50"
+             pattern="^[a-zA-Z\s]+$"
+             #city="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="city.invalid && city.touched" class="text-red-500 text-sm">
+                  <div *ngIf="city.errors?.['required']">City is required</div>
+                  <div *ngIf="city.errors?.['minlength']">City must be at least 3 characters</div>
+                  <div *ngIf="city.errors?.['maxlength']">City cannot exceed 50 characters</div>
+                  <div *ngIf="city.errors?.['pattern']">City name must only contain letters and spaces</div>
+                </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Country</label>
+              <input type="text" name="country" 
+              [(ngModel)]="usersRequest.address.country" required 
+              minlength="2"
+              maxlength="50" 
+              pattern="^[a-zA-Z\s]+$"
+              #country="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="country.invalid && country.touched" class="text-red-500 text-sm">
+                  <div *ngIf="country.errors?.['required']">Country is required</div>
+                  <div *ngIf="country.errors?.['minlength']">Country must be at least 2 characters</div>
+                  <div *ngIf="country.errors?.['maxlength']">Country cannot exceed 50 characters</div>
+                  <div *ngIf="country.errors?.['pattern']">Country can only contain letters and spaces</div>
+                </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Pincode</label>
+              <input type="text" name="pincode"
+              [(ngModel)]="usersRequest.address.pincode" required 
+              pattern="^[1-9][0-9]{5}$"
+              maxlength="6"
+              minlength="6"
+              #pincode="ngModel"
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+                <div *ngIf="pincode.invalid && pincode.touched" class="text-red-500 text-sm">
+                  <div *ngIf="pincode.errors?.['required']">Pincode is required</div>
+                  <div *ngIf="pincode.errors?.['pattern']">Pincode must start with a number and be exactly 6 digits</div>
+                  <div *ngIf="pincode.errors?.['minlength']">Pincode must be 6 digits</div>
+                  <div *ngIf="pincode.errors?.['maxlength']">Pincode cannot exceed 6 digits</div>
+                </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="bg-red-700 text-white py-2 px-6 rounded-lg hover:bg-red-800 transition duration-200" [disabled]="!usersForm.valid" (click)="saveUsers()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+

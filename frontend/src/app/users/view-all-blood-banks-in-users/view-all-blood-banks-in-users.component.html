@@ -1,0 +1,62 @@
+<div class="p-6 min-w-screen">
+    <!-- Heading Section -->
+    <div class="mb-6 flex justify-between " >
+        <div>
+            <h1 class="text-3xl font-semibold text-red-700">List Of Blood Banks</h1>
+        </div>
+       
+    </div>
+     <!-- Search Bar -->
+     <div class="mb-4 flex justify-center">
+        <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search Users..."
+    class="w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+/>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table class="min-w-full table-auto">
+            <!-- Table Header -->
+            <thead>
+                <tr class="bg-red-100">
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Bank Id</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Bank Name</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Bank Phone Number</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Bank Email Id</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Area</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">City</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Country</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Pincode</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">View Blood Availability</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody *ngFor="let bob of filteredUsers | paginate: { itemsPerPage: count, currentPage: p }">
+                <tr class="hover:bg-red-50 transition" *ngIf="bob.user.status == 'Accepted'">
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.bloodbankid}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.bloodbankcentername}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.bloodbankphonenumber}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.bloodbankemail}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.address.area}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.address.city}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.address.country}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bob.address.pincode}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">
+                        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-900 transition" (click)="viewAllBloodAvailability(bob.user.userid)">ViewAllBloodAvailability</button></td>
+                    
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <!--Including the pagination control.--> 
+    <div class="text-center mt-4"> 
+        <pagination-controls (pageChange)="p= $event"></pagination-controls> 
+    </div>
+    
+</div>

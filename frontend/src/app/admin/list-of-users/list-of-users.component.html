@@ -1,0 +1,95 @@
+<div class="p-6 min-w-screen">
+    <!-- Heading Section -->
+    <div class="mb-6 flex justify-between " >
+        <div>
+            <h1 class="text-3xl font-semibold text-red-700">List Of Users</h1>
+        
+        </div>
+        
+        <div>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" (click)="addNewUsers()">Add New Users</button>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-4 flex justify-center">
+        <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search Users..."
+    class="w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+/>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table class="min-w-full table-auto">
+            <!-- Table Header -->
+            <thead>
+                <tr class="bg-red-100">
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Users Id</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Users Name</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Users Phone Number</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Users Email Id</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Update</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Delete</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">View All Details</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody>
+                <tr class="hover:bg-red-50 transition" *ngFor="let us of filteredUsers  | paginate: { itemsPerPage: count, currentPage: p }">
+                    <td class="py-5 px-4 text-sm text-gray-800">{{us.usersid}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{us.usersname}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{us.usersphonenumber}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{us.usersemail}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" (click)="updateUsersById(us.usersid)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                <path d="M16 5l3 3" />
+                            </svg>
+                    </button></td>
+                    <td class="py-5 px-4 text-sm text-gray-800">
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" (click)="deleteUsersById(us.usersid)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 7l16 0" />
+                                <path d="M10 11l0 6" />
+                                <path d="M14 11l0 6" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                    </button></td>
+                    <td class="py-5 px-4 text-sm text-gray-800">
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition" (click)="viewUsersById(us.usersid)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                <path d="M12 18c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                <path d="M16 19h6" />
+                                <path d="M19 16v6" />
+                            </svg>
+                    </button></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="text-center mt-4"> 
+        <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+    </div>
+
+</div>
+

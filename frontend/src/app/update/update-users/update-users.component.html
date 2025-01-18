@@ -1,0 +1,104 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+      <h2 class="text-2xl font-bold text-center text-red-700 mb-6">Blood Bank - Hospital Update</h2>
+      <form class="space-y-6" (ngSubmit)="!usersForm && save()" #usersForm="ngForm">
+        
+        <!-- Users Details -->
+        <div class="border-b border-gray-300 pb-4">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Users Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 mb-1">Users Name</label>
+              <input type="text" name="usersname"  
+              [(ngModel)]="users.usersname" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Users Phone Number</label>
+              <input type="text" name="usersphonenumber"  
+              [(ngModel)]="users.usersphonenumber" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Users Email Id</label>
+              <input type="email" name="usersemail" 
+               [(ngModel)]="users.usersemail" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+                <label class="block text-gray-600 mb-1">Gender</label>
+                <input type="email" name="gender" 
+                 [(ngModel)]="users.gender" required 
+                  class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Age</label>
+                <input type="email" name="age" 
+                 [(ngModel)]="users.age" required 
+                  class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Weight</label>
+                <input type="email" name="weight" 
+                 [(ngModel)]="users.weight" required 
+                  class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Blood Group</label>
+                <input type="email" name="usersbloodgroup" 
+                 [(ngModel)]="users.usersbloodgroup" required 
+                  class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Disease</label>
+                <input type="email" name="usersdisease" 
+                 [(ngModel)]="users.usersdisease" required 
+                  class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+              </div>
+              
+        </div>
+        </div>
+  
+        <!-- Address Details -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Address Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 mb-1">Area</label>
+              <input type="text" name="area" 
+              [(ngModel)]="users.address.area" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">City</label>
+              <input type="text" name="city" 
+              [(ngModel)]="users.address.city" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Country</label>
+              <input type="text" name="country" 
+              [(ngModel)]="users.address.country" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+            <div>
+              <label class="block text-gray-600 mb-1">Pincode</label>
+              <input type="text" name="pincode"
+              [(ngModel)]="users.address.pincode" required 
+                class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-500" />
+            </div>
+          </div>
+        </div>
+        <div>
+            </div>
+  
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="bg-red-700 text-white py-2 px-6 rounded-lg hover:bg-red-800 transition duration-200" (click)="save()">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+

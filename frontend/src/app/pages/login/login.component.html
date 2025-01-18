@@ -1,0 +1,80 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 w-full">
+   
+    <div class="flex bg-white shadow-xl rounded-lg max-w-4xl w-full overflow-hidden">
+      
+   
+    <div class="w-1/2 bg-gradient-to-br from-red-700 to-pink-500 text-white flex flex-col justify-center p-6 bg-opacity-90">
+        <h2 class="text-4xl font-semibold mb-4 leading-tight">Welcome Back!</h2>
+        <p class="text-lg mb-4">If you don’t have an account yet, you can create one quickly and easily.</p>
+        <p class="text-md mb-6">Join our community and start exploring now!</p>
+      
+        <a routerLink="/signup" class="mt-6 text-lg font-semibold bg-red-100 hover:bg-red-200 text-red-700 py-2 px-6 rounded-lg transition-colors">
+          SignUp
+        </a>
+      </div>
+ 
+      <div class="w-1/2 p-6">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Login</h2>
+        <form action="#" method="POST">
+          <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <input type="text" id="username" name="username" 
+            [(ngModel)]="loginRequest.username" required 
+            class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Enter your username">
+          </div>
+
+          <div class="mb-4">
+            <div class="relative">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" 
+            [(ngModel)]="loginRequest.password" required 
+            class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Enter your password">
+            <button type="button" (click)="showPassword = !showPassword"
+              class="absolute right-2 top-2/3 transform -translate-y-1/2 p-1 text-gray-600 hover:text-gray-900">
+
+              <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                <path
+                  d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
+                <path d="M3 3l18 18" />
+              </svg>
+              <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+              </svg>
+
+            </button>
+          </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+            <select id="role" name="role"
+            [(ngModel)]="loginRequest.role" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+              <option  value="admin" >Admin</option>
+              <option  value="hospital" >Hospital</option>
+              <option  value="blood bank" >Blood Bank</option>
+              <option  value="user">User</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <button type="submit" class="w-full py-2 bg-red-700 text-white rounded-lg text-lg font-semibold hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500" (click)="validateUser()">
+              Login
+            </button>
+          </div>
+        </form>
+  
+        <div class="text-center mt-4">
+          <a href="/forgot-password" class="text-sm text-gray-600 hover:text-red-500 transition-colors">Forgot password?</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>

@@ -1,0 +1,67 @@
+<div class="p-6 min-w-screen">
+    <!-- Heading Section -->
+    <div class="mb-6">
+        <h1 class="text-3xl font-semibold text-red-700">Dashboard</h1>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table class="min-w-full table-auto">
+            <!-- Table Header -->
+            <thead>
+                <tr class="bg-red-100">
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Blood Availability Id</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">B+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">B-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">AB+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">AB-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">O+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">O-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A1+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A1-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A2+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A2-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A1B+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A1B-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A2B+</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">A2B-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Oh-</th>
+                    <th class="py-5 px-4 text-left text-sm font-medium text-gray-700">Rh-</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody>
+                <tr class="hover:bg-red-50 transition" *ngFor="let bloodavail of bloodAvailability">
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.bloodavailabilityid}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.b_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.b_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.ab_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.ab_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.o_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.o_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a1_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a1_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a2_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a2_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a1b_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a1b_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a2b_plus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.a2b_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.oh_minus}}</td>
+                    <td class="py-5 px-4 text-sm text-gray-800">{{bloodavail.rh_minus}}</td>
+                    
+
+                </tr>
+                
+            </tbody>
+        </table>
+        
+    </div>
+    
+</div>
+
