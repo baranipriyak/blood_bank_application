@@ -519,5 +519,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any questions or support, please contact:
-- **Email**: vbaranipriya@example.com
+- **Email**: vbaranipriya@gmail.com
 - **GitHub**: [Baranipriya V](https://github.com/baranipriyak)
